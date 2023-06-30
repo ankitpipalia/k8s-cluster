@@ -1,0 +1,3 @@
+.infracost/
+.terraform/
+.terraform.lock.hcl
