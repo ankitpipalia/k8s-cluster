@@ -1,0 +1,13 @@
+---
+- hosts: workers
+  remote_user: azure
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+   - name: Join the Worker nodes to the cluster.
+     become: yes
+     shell: sudo kubeadm join 10.0.0.4:6443 --token 6x2tf1.es5gltazi4sz6r3f --discovery-token-ca-cert-hash sha256:924bcdbe43229fccfa35153b32c1c5949417cb9c2e4bce4cf0183b51601f0935

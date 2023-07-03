@@ -118,7 +118,7 @@ resource "azurerm_network_interface" "worker1-nic" {
     public_ip_address_id          = azurerm_public_ip.worker1-pubip.id
   }
 
-  depends_on = [azurerm_public_ip.worker1-pubip]
+  depends_on = [azurerm_public_ip.worker1-pubip , azurerm_network_interface.master-nic]
 }
 
 resource "azurerm_public_ip" "worker1-pubip" {
@@ -156,8 +156,6 @@ resource "azurerm_linux_virtual_machine" "worker1_vm" {
     sku       = "minimal-23_04-gen2"
     version   = "latest"
   }
-
-  depends_on = [ azurerm_linux_virtual_machine.master_vm ]
 }
 
 # WorkerNode 2
@@ -173,7 +171,7 @@ resource "azurerm_network_interface" "worker2-nic" {
     public_ip_address_id          = azurerm_public_ip.worker2-pubip.id
   }
 
-  depends_on = [azurerm_public_ip.worker2-pubip]
+  depends_on = [azurerm_public_ip.worker2-pubip , azurerm_network_interface.worker1-nic , azurerm_network_interface.master-nic ]
 }
 
 resource "azurerm_public_ip" "worker2-pubip" {
@@ -211,5 +209,4 @@ resource "azurerm_linux_virtual_machine" "worker2_vm" {
     sku       = "minimal-23_04-gen2"
     version   = "latest"
   }
-  depends_on = [ azurerm_linux_virtual_machine.worker1_vm ]
 }
