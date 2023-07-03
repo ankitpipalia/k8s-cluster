@@ -8,14 +8,16 @@
   connection: ssh
 
   tasks:
-    # - name: initialize the cluster
-    #   shell: sudo kubeadm init
+    - name: initialize the cluster
+      shell: sudo kubeadm init
 
     - name: create .kube directory
       shell: |
-        mkdir -p $HOME/.kube
+        export KUBECONFIG=$HOME/.kube/config
+        mkdir -p /home/azure/.kube
+        sudo rm $HOME/.kube/config
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) /home/azure/.kube/config
 
     - name: Get the token for joining the worker nodes
       become: yes
