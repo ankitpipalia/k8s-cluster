@@ -10,4 +10,4 @@
   tasks:
    - name: Join the Worker nodes to the cluster.
      become: yes
-     shell: sudo kubeadm join 10.0.0.4:6443 --token c7iktx.5plqkl74d49proee --discovery-token-ca-cert-hash sha256:0ad138e0c834816ebadc4bf9086ae7e07b5e33ea530cd2fc0252857d75069315
+     shell: sudo kubeadm join 

@@ -1,4 +1,4 @@
----
+d---
 - hosts: masters
   remote_user: azure
   become: yes
@@ -15,9 +15,12 @@
       shell: |
         export KUBECONFIG=$HOME/.kube/config
         mkdir -p /home/azure/.kube
-        sudo rm $HOME/.kube/config
+        sudo rm -f $HOME/.kube/config
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
         sudo chown $(id -u):$(id -g) /home/azure/.kube/config
+
+    - name: install network for pods
+      shell: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/master/manifests/calico.yaml
 
     - name: Get the token for joining the worker nodes
       become: yes

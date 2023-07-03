@@ -1,6 +1,6 @@
 [masters]
-master ansible_host=20.198.79.238 ansible_user=azure
+master ansible_host=4.224.35.250 ansible_user=azure
 
 [workers]
-worker1 ansible_host=20.198.104.42 ansible_user=azure
-worker2 ansible_host=20.198.79.253 ansible_user=azure
+worker1 ansible_host=4.224.35.203 ansible_user=azure
+worker2 ansible_host=4.224.35.235 ansible_user=azure
