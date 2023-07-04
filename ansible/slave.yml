@@ -1,12 +1,9 @@
 ---
 - hosts: workers
   remote_user: azure
-  become: yes
-  become_method: sudo
-  become_user: root
   gather_facts: yes
   connection: ssh
 
   tasks:
    - name: Join the Worker nodes to the cluster.
-     shell: kubeadm join 
+     shell: kubeadm join
