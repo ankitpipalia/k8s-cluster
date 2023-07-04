@@ -1,4 +1,4 @@
-d---
+---
 - hosts: masters
   remote_user: azure
   become: yes
@@ -9,22 +9,23 @@ d---
 
   tasks:
     - name: initialize the cluster
-      shell: sudo kubeadm init
+      shell: kubeadm init --pod-network-cidr=192.168.0.0/16 --node-name k8s-control --ignore-preflight-errors=all 
 
     - name: create .kube directory
       shell: |
-        export KUBECONFIG=$HOME/.kube/config
-        mkdir -p /home/azure/.kube
-        sudo rm -f $HOME/.kube/config
+        mkdir -p $HOME/.kube
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-        sudo chown $(id -u):$(id -g) /home/azure/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+        export KUBECONFIG=$HOME/.kube/config
 
     - name: install network for pods
-      shell: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/master/manifests/calico.yaml
+      shell: |
+        kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+        kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
 
     - name: Get the token for joining the worker nodes
       become: yes
-      shell: sudo kubeadm token create  --print-join-command
+      shell: kubeadm token create  --print-join-command
       register: kubernetes_join_command
 
     - debug:

@@ -42,6 +42,7 @@
       shell: |
         sudo modprobe overlay
         sudo modprobe br_netfilter
+        printf "\n10.0.0.4 k8s-master\n10.0.0.5 k8s-1\n10.0.0.6 k8s-2\n\n" >> /etc/hosts
 
     - name: reset system permission
       shell: sudo sysctl --system
@@ -76,6 +77,7 @@
         sudo apt-get update && sudo apt-get install -y containerd.io
         sudo mkdir -p /etc/containerd
         sudo containerd config default | sudo tee /etc/containerd/config.toml
+        sudo systemctl daemon-reload
         sudo systemctl restart containerd
         sudo systemctl enable containerd
 

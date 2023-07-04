@@ -9,5 +9,4 @@
 
   tasks:
    - name: Join the Worker nodes to the cluster.
-     become: yes
-     shell: sudo kubeadm join 
+     shell: kubeadm join 
