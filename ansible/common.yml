@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: azure
+  remote_user: root
   become: yes
   become_method: sudo
   become_user: root
@@ -121,7 +121,7 @@
         validate: "visudo -cf %s"
 
     - name: reset grp permission
-      shell: sudo usermod -aG azure kube
-
-    - name: reset ssh connection
-      meta: reset_connection
+      shell: |
+        sudo usermod -aG root kube
+        systemctl daemon-reload
+        telinit 6

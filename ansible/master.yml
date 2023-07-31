@@ -1,6 +1,6 @@
 ---
 - hosts: masters
-  remote_user: azure
+  remote_user: root
   become: yes
   become_method: sudo
   become_user: root
