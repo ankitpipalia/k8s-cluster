@@ -124,4 +124,4 @@
       shell: |
         sudo usermod -aG root kube
         systemctl daemon-reload
-        telinit 6
+        reboot
