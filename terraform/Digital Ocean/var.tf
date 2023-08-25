@@ -1,7 +1,6 @@
 variable "do_token" {
   description = "DigitalOcean API token"
   type        = string
-  default = "dop_v1_9826a01756ec072d085450b1dfa0dfe5c10096d40eb57023a51f37ef8b40777d"
 }
 
 variable "ssh_keys" {
