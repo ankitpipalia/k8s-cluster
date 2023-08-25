@@ -1,5 +1,5 @@
 [masters]
-master ansible_host=143.110.240.53 ansible_user=root
+master ansible_host=157.245.105.83 ansible_user=root
 
 [workers]
-worker1 ansible_host=68.183.88.250 ansible_user=root
+worker1 ansible_host=157.245.97.100 ansible_user=root

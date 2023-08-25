@@ -1,0 +1,11 @@
+# This command is used to authenticate the doctl command line interface with your DigitalOcean account.
+doctl auth init
+
+# This command lists all the droplets in your DigitalOcean account.
+doctl compute droplet list
+
+# This command deletes the droplet named 'example' from your DigitalOcean account.
+doctl compute droplet delete example
+
+# This command lists all the SSH keys associated with your DigitalOcean account.
+doctl compute ssh-key list

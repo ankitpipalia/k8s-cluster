@@ -1,0 +1,12 @@
+---
+- hosts: workers
+  remote_user: root
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+   - name: Join the Worker nodes to the cluster.
+     command: kubeadm join 157.245.105.83:6443 --token ysmnkg.geflcxkiiyn13k6e --discovery-token-ca-cert-hash sha256:fcf32db8ea86fa6bb4e32d9c9ae9eccca43eac84bde82287d2756d305af66ec6 --node-name k8s-worker
